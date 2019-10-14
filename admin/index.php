@@ -1,3 +1,11 @@
+<?php
+if(isset($_POST['btn'])){
+    require 'function_defination.php';
+    $message=admin_check_login_info($_POST);
+}
+?>
+
+
 <!DOCTYPE html>
 <html dir="ltr">
     <head>
@@ -7,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" type="image/png" sizes="16x16" href="..assets/admin/assets/images/favicon.png">
-        <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+        <title>Admin panel login</title>
         <link rel="stylesheet" href="../assets/admin/dist/css/style.min.css">
     </head>
 
@@ -25,21 +33,33 @@
                         <div class="text-center p-t-20 p-b-20">
                             <span class="db"><img src="../assets/admin/assets/images/logo.png" alt="logo" /></span>
                         </div>
+                        
+                        <div class="text-center p-t-20 p-b-20">
+                            <span class="db"><b style="color: #FFF; font-weight: 800;">
+                                <?php 
+                                    if(isset($message)){
+                                        echo $message; 
+                                        unset($message);
+                                    }
+                                ?>
+                                </b>
+                            </span>
+                        </div>
                         <!-- Form -->
-                        <form class="form-horizontal m-t-20" id="loginform" action="admin_master.php">
+                        <form method="post"  action="" class="form-horizontal m-t-20" id="loginform">
                             <div class="row p-b-30">
                                 <div class="col-12">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-user"></i></span>
+                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-email"></i></span>
                                         </div>
-                                        <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required="">
+                                        <input type="email" name="email_address" class="form-control form-control-lg" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" required="">
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
+                                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +68,7 @@
                                     <div class="form-group">
                                         <div class="p-t-20">
                                             <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Lost password?</button>
-                                            <button class="btn btn-success float-right" type="submit">Login</button>
+                                            <button class="btn btn-success float-right" type="submit" name="btn">Login</button>
                                         </div>
                                     </div>
                                 </div>

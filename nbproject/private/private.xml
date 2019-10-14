@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/pages/show_category_content.php</file>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/admin_master.php</file>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/pages/show_brand_content.php</file>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/add_brand.php</file>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/show_brand.php</file>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/pages/home_content.php</file>
+            <file>file:/C:/xampp/htdocs/Smart_Shop/admin/pages/add_brand_content.php</file>
+        </group>
     </open-files>
 </project-private>
