@@ -1,122 +1,147 @@
 <?php
-if(isset($_POST['btn'])){
-    require 'function_defination.php';
-    $message=admin_check_login_info($_POST);
+session_start();
+if(isset($_SESSION['admin_id'])){
+    header('Location: admin_master.php');
+}
+
+if (isset($_POST['btn'])) { 
+    require '../clases/login.php';
+    $obj_login = new Login();
+    $message=$obj_login->check_login_info($_POST);
 }
 ?>
-
-
 <!DOCTYPE html>
-<html dir="ltr">
+<html lang="en">
     <head>
+
+        <!-- start: Meta -->
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>
+        <meta name="description" content="Bootstrap Metro Dashboard">
+        <meta name="author" content="Dennis Ji">
+        <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" type="image/png" sizes="16x16" href="..assets/admin/assets/images/favicon.png">
-        <title>Admin panel login</title>
-        <link rel="stylesheet" href="../assets/admin/dist/css/style.min.css">
+        <!-- end: Mobile Specific -->
+
+        <!-- start: CSS -->
+        <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link id="base-style" href="css/style.css" rel="stylesheet">
+        <link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <style type="text/css">
+            body { background: url(img/bg-login.jpg) !important; }
+        </style>
     </head>
 
     <body>
-        <div class="main-wrapper">
-            <div class="preloader">
-                <div class="lds-ripple">
-                    <div class="lds-pos"></div>
-                    <div class="lds-pos"></div>
-                </div>
-            </div>
-            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
-                <div class="auth-box bg-dark border-top border-secondary">
-                    <div id="loginform">
-                        <div class="text-center p-t-20 p-b-20">
-                            <span class="db"><img src="../assets/admin/assets/images/logo.png" alt="logo" /></span>
-                        </div>
-                        
-                        <div class="text-center p-t-20 p-b-20">
-                            <span class="db"><b style="color: #FFF; font-weight: 800;">
-                                <?php 
-                                    if(isset($message)){
-                                        echo $message; 
-                                        unset($message);
-                                    }
-                                ?>
-                                </b>
-                            </span>
-                        </div>
-                        <!-- Form -->
-                        <form method="post"  action="" class="form-horizontal m-t-20" id="loginform">
-                            <div class="row p-b-30">
-                                <div class="col-12">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-success text-white" id="basic-addon1"><i class="ti-email"></i></span>
-                                        </div>
-                                        <input type="email" name="email_address" class="form-control form-control-lg" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" required="">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text bg-warning text-white" id="basic-addon2"><i class="ti-pencil"></i></span>
-                                        </div>
-                                        <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row border-top border-secondary">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="p-t-20">
-                                            <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i> Lost password?</button>
-                                            <button class="btn btn-success float-right" type="submit" name="btn">Login</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="recoverform">
-                        <div class="text-center">
-                            <span class="text-white">Enter your e-mail address below and we will send you instructions how to recover a password.</span>
-                        </div>
-                        <div class="row m-t-20">
-                            <!-- Form -->
-                            <form class="col-12" action="index.html">
-                                <!-- email -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="ti-email"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
-                                </div>
-                                <!-- pwd -->
-                                <div class="row m-t-20 p-t-20 border-top border-secondary">
-                                    <div class="col-12">
-                                        <a class="btn btn-success" href="#" id="to-login" name="action">Back To Login</a>
-                                        <button class="btn btn-info float-right" type="button" name="action">Recover</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="../assets/admin/libs/jquery/dist/jquery.min.js"></script>
-        <script src="../assets/admin/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="../assets/admin/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script>
-            $('[data-toggle="tooltip"]').tooltip();
-            $(".preloader").fadeOut();
-            $('#to-recover').on("click", function () {
-                $("#loginform").slideUp();
-                $("#recoverform").fadeIn();
-            });
-            $('#to-login').click(function () {
+        <div class="container-fluid-full">
+            <div class="row-fluid">
 
-                $("#recoverform").hide();
-                $("#loginform").fadeIn();
-            });
-        </script>
+                <div class="row-fluid">
+                    <div class="login-box">
+                        <div class="icons">
+                            <a href="index.html"><i class="halflings-icon home"></i></a>
+                            <a href="#"><i class="halflings-icon cog"></i></a>
+                        </div>
+                        <h2>Login to your account</h2>
+                        <h2 syle="color: red; font-weight: 800" >
+                            <?php
+                                if(isset($message)){
+                                    echo $message;
+                                }
+                            ?>
+                        </h2>
+                        <form class="form-horizontal" action="" method="post">
+                                <div class="input-prepend" title="Email address">
+                                    <span class="add-on"><i class="halflings-icon user"></i></span>
+                                    <input class="input-large span10" name="email_address" id="username" type="email" placeholder="type email"/>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="input-prepend" title="Password">
+                                    <span class="add-on"><i class="halflings-icon lock"></i></span>
+                                    <input class="input-large span10" name="password" id="password" type="password" placeholder="type password"/>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
+
+                                <div class="button-login">	
+                                    <button type="submit" class="btn btn-primary" name="btn">Login</button>
+                                </div>
+                                <div class="clearfix"></div>
+                        </form>
+                        <hr>
+                        <h3>Forgot Password?</h3>
+                        <p>
+                            No problem, <a href="#">click here</a> to get a new password.
+                        </p>	
+                    </div><!--/span-->
+                </div><!--/row-->
+
+
+            </div><!--/.fluid-container-->
+
+        </div>
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/jquery-migrate-1.0.0.min.js"></script>
+
+        <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+
+        <script src="js/jquery.ui.touch-punch.js"></script>
+
+        <script src="js/modernizr.js"></script>
+
+        <script src="js/bootstrap.min.js"></script>
+
+        <script src="js/jquery.cookie.js"></script>
+
+        <script src='js/fullcalendar.min.js'></script>
+
+        <script src='js/jquery.dataTables.min.js'></script>
+
+        <script src="js/excanvas.js"></script>
+        <script src="js/jquery.flot.js"></script>
+        <script src="js/jquery.flot.pie.js"></script>
+        <script src="js/jquery.flot.stack.js"></script>
+        <script src="js/jquery.flot.resize.min.js"></script>
+
+        <script src="js/jquery.chosen.min.js"></script>
+
+        <script src="js/jquery.uniform.min.js"></script>
+
+        <script src="js/jquery.cleditor.min.js"></script>
+
+        <script src="js/jquery.noty.js"></script>
+
+        <script src="js/jquery.elfinder.min.js"></script>
+
+        <script src="js/jquery.raty.min.js"></script>
+
+        <script src="js/jquery.iphone.toggle.js"></script>
+
+        <script src="js/jquery.uploadify-3.1.min.js"></script>
+
+        <script src="js/jquery.gritter.min.js"></script>
+
+        <script src="js/jquery.imagesloaded.js"></script>
+
+        <script src="js/jquery.masonry.min.js"></script>
+
+        <script src="js/jquery.knob.modified.js"></script>
+
+        <script src="js/jquery.sparkline.min.js"></script>
+
+        <script src="js/counter.js"></script>
+
+        <script src="js/retina.js"></script>
+
+        <script src="js/custom.js"></script>
+        <!-- end: JavaScript-->
+
     </body>
 </html>

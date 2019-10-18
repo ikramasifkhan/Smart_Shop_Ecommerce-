@@ -1,63 +1,71 @@
-<div class="page-breadcrumb">
-    <div class="row">
-        <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title" style="font-size: 18px; font-weight: 800">Add your category here</h4>
-            <div class="ml-auto text-right">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add category</li>
-                    </ol>
-                </nav>
-            </div>
+<?php
+
+if(isset($_POST['btn'])){
+    $message=$obj_category->save_category_info($_POST);
+}
+?>
+<ul class="breadcrumb">
+    <li>
+        <i class="icon-home"></i>
+        <a href="index.html">Home</a>
+        <i class="icon-angle-right"></i> 
+    </li>
+    <li>
+        <i class="icon-edit"></i>
+        <a href="#">Add category</a>
+    </li>
+</ul>
+
+<div class="row-fluid sortable">
+    <div class="box span12">
+        <div class="box-header" data-original-title>
+            <h2 style="font-weight: 800"><i class="halflings-icon edit"></i><span class="break"></span>Add category</h2>
+            <h2 style="font-weight: 800"><span class="break"></span>
+            <?php
+            if(isset($message)){
+                echo $message;
+            }
+            ?>
+            </h2>
+        </div>
+        <div class="box-content">
+            <form class="form-horizontal" method="post" action="">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="typeahead" style="font-weight: 800">Category name </label>
+                        <div class="controls">
+                            <input type="text" name="category_name" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4">
+                        </div>
+                    </div>
+                        
+                    <div class="control-group hidden-phone">
+                        <label class="control-label" for="textarea2" style="font-weight: 800">Category description</label>
+                        <div class="controls">
+                            <textarea name="category_description" class="cleditor" id="textarea2" rows="3"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" style="font-weight: 800">Publication status</label>
+                        <div class="controls">
+                            <label class="radio">
+                                <input type="radio" name="publication_status" id="optionsRadios1" value="1" checked="">
+                                Published
+                            </label>
+                            <div style="clear:both"></div>
+                            <label class="radio">
+                                <input type="radio" name="publication_status" id="optionsRadios2" value="0">
+                                Unpublished
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" name="btn" class="btn btn-primary">Save your category info here</button>
+                    </div>
+                </fieldset>
+            </form>   
         </div>
     </div>
 </div>
-<div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <form class="form-horizontal">
-                    <div class="card-body">
-                        <h4 class="card-title" style="font-size: 16px; font-weight: 800">Add category info </h4>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label" style="font-weight: 800">Category Name</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fname" placeholder="Category info">
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="cono1" class="col-sm-3 text-right control-label col-form-label" style="font-weight: 800">Category description</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-3 text-right control-label col-form-label" style="font-weight: 800">Publication status</label>
-                            <div class="col-md-9">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="radio-stacked" required checked>
-                                    <label class="custom-control-label" for="customControlValidation1">Published</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
-                                    <label class="custom-control-label" for="customControlValidation2">Unpublished</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-top">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-primary btn-block">Save your category info here</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
